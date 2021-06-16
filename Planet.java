@@ -45,7 +45,7 @@ public class Planet {
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
     public boolean lifeOnPlanet(){
-    	boolean response = false;				// TODO: provare refactoring senza variabile di appoggio a codice funzionante
+    	boolean response = false;				// TODO: testare refactoring senza variabile di appoggio a codice funzionante
     	for (int i=0; i<board.length; i++) {    		
     		if(board[i]==1)
     			response = true;
