@@ -10,6 +10,7 @@ public class GameOfLife1D {
     String in = input.nextLine();
     Planet board = new Planet(in);
     board.printBoard();
+    input.close();  //chiudo input scanner, non intacca il codice madre come da assignment ma e' solo una ottimizzazione
     while(board.lifeOnPlanet()){
       board.oneTurn();
       board.printBoard();
