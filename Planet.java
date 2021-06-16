@@ -9,11 +9,15 @@ public class Planet {
     // Deve gestire la conversione da 'input' a 'board'
     // ESEMPIO: 'input' = '1001010' -> 'board' = [ 1, 0, 0, 1, 0, 1, 0 ]
     public Planet(String input){
-        // TODO: implement
-    }
+        for(int i = 0; i <input.length() - 1; i++){
+			board[i] = (int)input.charAt(i);
+		}
+	}
 
     public void printBoard(){
-        // TODO: implement
+        for(int i = 0; i < board.length; i++){
+			System.out.print(board[i] + " - ");
+		}
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
