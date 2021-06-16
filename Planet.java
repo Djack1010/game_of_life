@@ -40,7 +40,11 @@ public class Planet {
 	}
 
 	public void printBoard(){
-		System.out.println(board.toString());
+		String s = "";
+		for (int i=0; i<board.length; i++) {
+			s+=board[i].toString();
+		}
+		System.out.println(s);
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
@@ -63,7 +67,25 @@ public class Planet {
     //											0, 0, 0 -> 0, 0, 0
     // Il board va considerato CIRCOLARE (es: il vicino sx di i=0 è i=board.length-1), e il metodo deve anche aggiornare il count del turno
     public void oneTurn(){
-        // TODO: implement
+    	Integer[] arrOrig = board.clone();
+    	for (int i=0; i<arrOrig.length; i++) {
+        	int sx = i-1;
+        	int dx = i+1;
+    		if (i==0)
+    			sx=board.length-1;
+    		if (i==board.length-1)
+    			dx=0;
+    		
+    		if (arrOrig[sx]==1 && arrOrig[dx]==1 && arrOrig[i]==0)	// 101 => 111
+    			board[i]=1;
+    		if (arrOrig[sx]==1 && arrOrig[dx]==1 && arrOrig[i]==1)	// 111 => 101
+    			board[i]=0;
+    		if ((arrOrig[sx]==1 && arrOrig[dx]==0) || (arrOrig[sx]==0 && arrOrig[dx]==1)) // 1X0 o 0X1 => invariato
+    			board[i]=board[i];
+    		if (arrOrig[sx]==0 && arrOrig[dx]==0)
+    			board[i]=0;
+    		setTurn(i);
+    	}
     }
 
     public int getTurn() {return this.turn;}
