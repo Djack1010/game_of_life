@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.lang.Math;
-
+// Author Edoardo
 public class Planet {
-	List<Integer> board = new ArrayList<Integer>();
-	List<Integer> boardBackup = new ArrayList<Integer>();//meglio la lista array
+	List<Integer> board = new ArrayList<Integer>();//meglio la lista array
     int turn;
     
 
@@ -31,7 +30,6 @@ public class Planet {
         	i++;
         }
         System.out.println(boardditesto);
-        //System.out.println(board); 
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
@@ -60,22 +58,22 @@ public class Planet {
     //											0, 0, 0 -> 0, 0, 0
     // Il board va considerato CIRCOLARE (es: il vicino sx di i=0 è i=board.length-1), e il metodo deve anche aggiornare il count del turno
     public void oneTurn(){
-        boardBackup = board; //faccio si che analizzo la boardBackup ma cambio la board;
+    	List<Integer> boardBackup = new ArrayList<>(board); //faccio si che analizzo la boardBackup ma cambio la board;
         int i = 0;
         while (i < boardBackup.size()) {
         	if (i == 0) {
         		//checkPopolazione(boardBackup.size() -1, boardBackup.get(i), boardBackup.get(i +1));
-        		board.set(i, checkPopolazione(boardBackup.size() -1, boardBackup.get(i), boardBackup.get(i + 1)));
-        		i++;
+        		board.set(i, checkPopolazione(boardBackup.get(boardBackup.size() -1), boardBackup.get(i), boardBackup.get(i +1)));
         	}
-        	else if (i == boardBackup.size() -1) {
+/*else*/	if (i == boardBackup.size() -1) {
         		board.set(i, checkPopolazione(boardBackup.get(i -1), boardBackup.get(i), boardBackup.get(0)));
-        		i++;
         	}
-        	else {
-        		board.set(i, checkPopolazione(boardBackup.get(i - 1), boardBackup.get(i), boardBackup.get(i + 1)));
-        		i++;
-        	}        	
+        	 
+        	 if ((i > 0) &&(i < (boardBackup.size()-1))) {
+        	 board.set(i, checkPopolazione(boardBackup.get(i -1), boardBackup.get(i), boardBackup.get(i +1)));
+        	 //i++;
+        	 }
+        	      i++; 	
         }
         turn++;
     }
@@ -87,15 +85,13 @@ public class Planet {
     	if (prima == 1 && i == 1 && dopo == 1) {
     		return 0;
     	}
-    	if ((prima == 1 && i == 1 && dopo == 0) || (prima == 0 && i == 1 && dopo == 1)) {
-    		return 1;
+    	if ((prima == 1 && dopo == 0) || (prima == 0 && dopo == 1)) {
+    		return i;
     	}
-    	if ((prima == 0 && i == 1 && dopo == 0) || (prima == 0 && i == 0 && dopo == 0)) {
+    	if (prima == 0 &&  dopo == 0) {
     		return 0;
     	}
-    	else {
     		return 0; //se anche ultimo metodo non va, magari valore inserito erroneamente, ritorna 0 comunque.
-    	}
     }
 
     public int getTurn() {return this.turn;}
