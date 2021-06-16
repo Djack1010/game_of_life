@@ -16,7 +16,6 @@ public class Planet {
             c = input.charAt(i);
             board[i] = Character.getNumericValue(c);
         }
-            //board[i] = Integer.parseInt(input.substring(i, 1));
         
         // inizializzo il turno del gioco
         turn = 0;
@@ -52,7 +51,37 @@ public class Planet {
     //                                          0, 0, 0 -> 0, 0, 0
     // Il board va considerato CIRCOLARE (es: il vicino sx di i=0 è i=board.length-1), e il metodo deve anche aggiornare il count del turno
     public void oneTurn(){
-        // TODO: implement
+        
+        // dichiaro un array temporaneo per processare board
+        Integer[] temp = Arrays.copyOf(board, board.length);
+        
+        // dichiaro due variabili che conterranno indice precedente e successivo
+        int indPrecedente;
+        int indSuccessivo;
+        
+        for (int i=0; i<board.length; i++) {
+            
+            indPrecedente = Math.abs((i-1)+board.length)%board.length;
+            indSuccessivo = Math.abs((i+1)+board.length)%board.length;
+            
+            // casi 1 e 2
+            if ((board[indPrecedente] == 1) && (board[indSuccessivo] == 1)) {
+                
+                if (board[i] == 0)
+                    temp[i] = 1;
+                else
+                    temp[i] = 0;
+            }
+            // caso 3 non implementato avendo creato una copia temporanea di board
+                
+            //caso 4
+            if ((board[indPrecedente] == 0) && (board[indSuccessivo] == 0))
+                temp [i] = 0;
+        }
+
+        // copia di temp nella board
+        board = Arrays.copyOf(temp, board.length);
+
     }
 
     public int getTurn() {return this.turn;}
