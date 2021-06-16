@@ -40,12 +40,17 @@ public class Planet {
 	}
 
 	public void printBoard(){
-        // TODO: implement
+		System.out.println(board.toString());
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
     public boolean lifeOnPlanet(){
-        return true;
+    	boolean response = false;				// TODO: provare refactoring senza variabile di appoggio a codice funzionante
+    	for (int i=0; i<board.length; i++) {    		
+    		if(board[i]==1)
+    			response = true;
+    	}
+		return response;
     }
     
     // basandosi sul board attuale, lo aggiorna per il successivo turno sequendo le seguenti regole:
