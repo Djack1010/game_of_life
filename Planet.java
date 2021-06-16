@@ -83,7 +83,8 @@ public class Planet {
     			board[i]=board[i];
     		if (arrOrig[sx]==0 && arrOrig[dx]==0)
     			board[i]=0;
-    		setTurn(i);
+    		
+    		this.turn++;
     	}
     }
 
