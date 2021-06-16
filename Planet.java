@@ -33,7 +33,16 @@ public class Planet {
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
     public boolean lifeOnPlanet(){
-        return true;
+        
+        boolean life = false;
+        int count = 0;
+        // se almeno un elemento di board e' 1 esco dal metodo
+        while (count < board.length && !life) {
+            if (board[count] == 1)
+                return true;
+            count++;
+        }
+        return life;
     }
     
     // basandosi sul board attuale, lo aggiorna per il successivo turno sequendo le seguenti regole:
