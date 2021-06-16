@@ -54,14 +54,15 @@ public class Planet {
         	//caso in cui i sia alla prima posizione dell'array
         	if(i == 0) {
         		if (arraySupporto[arraySupporto.length - 1] == 1 & arraySupporto[i + 1] ==1) {
-        			if(arraySupporto[i] == 1) arraySupporto[i] = 0;
-        			else arraySupporto[i] = 1;
+        			if(arraySupporto[i] == 1) arraySupporto[i] = 0;    //  vicini sono entrambi 1 ed i è 1 -> i diventa 0 (morte per sovrappopolazione)
+        			else arraySupporto[i] = 1;     //  vicini sono entrambi 1 ed i è 0 -> i diventa 1 (nuova nascita)
         		}
         		if (arraySupporto[arraySupporto.length - 1] == 0 & arraySupporto[i + 1] == 0) {
         			if(rand.nextInt(100) <= 90) arraySupporto[i] = 0;
         			else arraySupporto[i] = 1;
         		}
-        		
+				
+        		// probabilmente è inutile, però volevo mostrare tutta la casistica (vicini sono uno 0 e l'altro 1	 -> i non cambia (sopravvivenza))
             	if(arraySupporto[arraySupporto.length - 1] == 0 ^ arraySupporto[i + 1] == 0) arraySupporto[i] = arraySupporto[i];
 
         		
@@ -69,16 +70,17 @@ public class Planet {
         	//caso in cui i sia nel mezzo dell'array
         	if(i != 0 & i != arraySupporto.length - 1) {
         		if(arraySupporto[i - 1] == 1 && arraySupporto[i + 1] == 1) {
-        			if(arraySupporto[i] == 1) arraySupporto[i] = 0;
-        			else arraySupporto[i] = 1;
+        			if(arraySupporto[i] == 1) arraySupporto[i] = 0;    //  vicini sono entrambi 1 ed i è 1 -> i diventa 0 (morte per sovrappopolazione)
+        			else arraySupporto[i] = 1;     //  vicini sono entrambi 1 ed i è 0 -> i diventa 1 (nuova nascita)
         		}
-        		
+				
+        		// probabilmente è inutile, però volevo mostrare tutta la casistica   (vicini sono uno 0 e l'altro 1	 -> i non cambia (sopravvivenza))
         		if(arraySupporto[i - 1] == 0 ^ arraySupporto[i + 1] == 0) arraySupporto[i] = arraySupporto[i];
         		
         		
         		
         		if (arraySupporto[i - 1] == 0 & arraySupporto[i + 1] == 0) {
-        			if(rand.nextInt(100) <= 90) arraySupporto[i] = 0;
+        			if(rand.nextInt(100) < 90) arraySupporto[i] = 0;
         			else arraySupporto[i] = 1;
         		}
         	}
@@ -86,8 +88,9 @@ public class Planet {
         	//caso in cui i sia all'ultima posizione dell'array
             if(i == arraySupporto.length - 1) {
             	if (arraySupporto[i - 1] == 1 & arraySupporto[0] == 1) {
-            		if(arraySupporto[i] == 1) arraySupporto[i] = 0;
-            		else arraySupporto[i] = 1;
+            		if(arraySupporto[i] == 1) arraySupporto[i] = 0;    //  vicini sono entrambi 1 ed i è 1 -> i diventa 0 (morte per sovrappopolazione)
+
+            		else arraySupporto[i] = 1;     //  vicini sono entrambi 1 ed i è 0 -> i diventa 1 (nuova nascita)
             	}
             		
            		if (arraySupporto[i - 1] == 0 & arraySupporto[0] == 0) {
@@ -95,6 +98,7 @@ public class Planet {
            			else arraySupporto[i] = 1;
            		}
            		
+				// probabilmente è inutile, però volevo mostrare tutta la casistica     (vicini sono uno 0 e l'altro 1	 -> i non cambia (sopravvivenza))
             	if(arraySupporto[i - 1] == 0 ^ arraySupporto[0] == 0) arraySupporto[i] = arraySupporto[i];
 
            	}
