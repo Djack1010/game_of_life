@@ -13,6 +13,12 @@ public class GameOfLife1D {
     while(board.lifeOnPlanet()){
       board.oneTurn();
       board.printBoard();
+      try {
+		Thread.sleep(1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
      
   }

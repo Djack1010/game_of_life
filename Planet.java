@@ -4,20 +4,22 @@ import java.util.List;
 import java.lang.Math;
 
 public class Planet {
-	List<Integer> board = new ArrayList<Integer>(); //meglio la lista array
+	List<Integer> board = new ArrayList<Integer>();
+	List<Integer> boardBackup = new ArrayList<Integer>();//meglio la lista array
     int turn;
     
 
     // Deve gestire la conversione da 'input' a 'board'
     // ESEMPIO: 'input' = '1001010' -> 'board' = [ 1, 0, 0, 1, 0, 1, 0 ]
     public Planet(String in){
-    	int input = Integer.parseInt(in);    //converto la stringa in int
+    	turn = 0;  //al momento della creazione indicizzo il turno 0
+    	//int input = Integer.parseInt(in);    //converto la stringa in int
     	//int length = String.valueOf(in).length();
-    	while (input > 0) {
-   	     board.add(0, input%10);  // senza lo 0 l'array verrebbe al contrario
-   	     input/=10;
+    	int i = 0;
+    	while (i < in.length()) {
+   	     board.add(((int) in.charAt(i)) - 48);  // -48 per indicizzare lo 0 nella scala ASCII
+   	     i++;
    	 }
-    	//System.out.println(board.size());
     }
 
     public void printBoard(){
@@ -29,7 +31,7 @@ public class Planet {
         	i++;
         }
         System.out.println(boardditesto);
-        
+        //System.out.println(board); 
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
@@ -44,7 +46,7 @@ public class Planet {
         	i++;
         }
       }
-        System.out.println("non trovo nulla");
+        System.out.println("Tutta la popolazione e' morta xD");
     	return false;  //ritorna falso se alla fine del ciclo non trova nessun 1
     }
     
@@ -58,7 +60,42 @@ public class Planet {
     //											0, 0, 0 -> 0, 0, 0
     // Il board va considerato CIRCOLARE (es: il vicino sx di i=0 è i=board.length-1), e il metodo deve anche aggiornare il count del turno
     public void oneTurn(){
-        // TODO: implement
+        boardBackup = board; //faccio si che analizzo la boardBackup ma cambio la board;
+        int i = 0;
+        while (i < boardBackup.size()) {
+        	if (i == 0) {
+        		//checkPopolazione(boardBackup.size() -1, boardBackup.get(i), boardBackup.get(i +1));
+        		board.set(i, checkPopolazione(boardBackup.size() -1, boardBackup.get(i), boardBackup.get(i + 1)));
+        		i++;
+        	}
+        	else if (i == boardBackup.size() -1) {
+        		board.set(i, checkPopolazione(boardBackup.get(i -1), boardBackup.get(i), boardBackup.get(0)));
+        		i++;
+        	}
+        	else {
+        		board.set(i, checkPopolazione(boardBackup.get(i - 1), boardBackup.get(i), boardBackup.get(i + 1)));
+        		i++;
+        	}        	
+        }
+        turn++;
+    }
+    
+    public int checkPopolazione(int prima, int i, int dopo) {
+    	if (prima == 1 && i == 0 && dopo == 1) {
+    		return 1;
+    	}
+    	if (prima == 1 && i == 1 && dopo == 1) {
+    		return 0;
+    	}
+    	if ((prima == 1 && i == 1 && dopo == 0) || (prima == 0 && i == 1 && dopo == 1)) {
+    		return 1;
+    	}
+    	if ((prima == 0 && i == 1 && dopo == 0) || (prima == 0 && i == 0 && dopo == 0)) {
+    		return 0;
+    	}
+    	else {
+    		return 0; //se anche ultimo metodo non va, magari valore inserito erroneamente, ritorna 0 comunque.
+    	}
     }
 
     public int getTurn() {return this.turn;}
