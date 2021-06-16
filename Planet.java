@@ -9,8 +9,9 @@ public class Planet {
     // Deve gestire la conversione da 'input' a 'board'
     // ESEMPIO: 'input' = '1001010' -> 'board' = [ 1, 0, 0, 1, 0, 1, 0 ]
     public Planet(String input){
-        for(int i = 0; i <input.length() - 1; i++){
-			board[i] = (int)input.charAt(i);
+        board = new Integer[input.length()]; 
+        for(int i = 0; i <input.length(); i++){
+			board[i] = Character.getNumericValue(input.charAt(i)); 
 		}
 	}
 
