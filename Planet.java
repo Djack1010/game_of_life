@@ -58,7 +58,7 @@ public class Planet {
         			else arraySupporto[i] = 1;     //  vicini sono entrambi 1 ed i è 0 -> i diventa 1 (nuova nascita)
         		}
         		if (arraySupporto[arraySupporto.length - 1] == 0 & arraySupporto[i + 1] == 0) {
-        			if(rand.nextInt(100) <= 90) arraySupporto[i] = 0;
+        			if(rand.nextInt(100) < 90) arraySupporto[i] = 0;
         			else arraySupporto[i] = 1;
         		}
 				
