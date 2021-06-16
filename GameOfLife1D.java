@@ -10,10 +10,10 @@ public class GameOfLife1D {
     String in = input.nextLine();
     Planet board = new Planet(in);
     board.printBoard();
-    while(board.lifeOnPlanet()){
-      board.oneTurn();
-      board.printBoard();
-    }
+//    while(board.lifeOnPlanet()){
+//      board.oneTurn();
+//      board.printBoard();
+//    }
      
   }
 
