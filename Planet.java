@@ -3,22 +3,49 @@ import java.lang.Math;
 
 public class Planet {
 
-    Integer[] board;
-    int turn;
+    private Integer[] board;
+    private int turn;
 
     // Deve gestire la conversione da 'input' a 'board'
     // ESEMPIO: 'input' = '1001010' -> 'board' = [ 1, 0, 0, 1, 0, 1, 0 ]
     public Planet(String input){
-        // TODO: implement
+    	setBoard(input);
+    	setTurn(0);
     }
 
-    public void printBoard(){
+    public Integer[] getBoard() {
+		return board;
+	}
+
+	public void setBoard(Integer[] board) {
+		this.board = board;
+	}
+	
+	public void setBoard(String input) {
+		board=new Integer[input.length()];
+		for (int i=0; i<input.length(); i++) {
+			if (input.charAt(i)=='0')
+				board[i]=0;
+			else if (input.charAt(i)=='1')
+				board[i]=1;
+			else
+				board[i]=0;
+		}
+		
+		this.board = board;
+	}
+
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
+
+	public void printBoard(){
         // TODO: implement
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
     public boolean lifeOnPlanet(){
-        // TODO: implement
+        return true;
     }
     
     // basandosi sul board attuale, lo aggiorna per il successivo turno sequendo le seguenti regole:
