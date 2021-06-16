@@ -5,20 +5,37 @@ public class Planet {
 
     Integer[] board;
     int turn;
+    int lunghezzaStringa;	// ** Variabile contenente la lunghezza della stringa inserita dall'utente
 
     // Deve gestire la conversione da 'input' a 'board'
     // ESEMPIO: 'input' = '1001010' -> 'board' = [ 1, 0, 0, 1, 0, 1, 0 ]
     public Planet(String input){
         // TODO: implement
+    	lunghezzaStringa=input.length();    
+    	board = new Integer[lunghezzaStringa];
+    	// System.out.println(lunghezzaStringa);		
+    	for(int i=0;i<lunghezzaStringa;i++) {
+    		board[i]=Character.getNumericValue(input.charAt(i));
+    	}
+    	    	
     }
 
     public void printBoard(){
         // TODO: implement
+    	for(int i=0;i<lunghezzaStringa;i++) {
+    		System.out.print(board[i]);
+    		
+    		
+    	}
+    	
+    	
+    	
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
     public boolean lifeOnPlanet(){
         // TODO: implement
+    	return true;
     }
     
     // basandosi sul board attuale, lo aggiorna per il successivo turno sequendo le seguenti regole:
