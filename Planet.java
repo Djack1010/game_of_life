@@ -22,8 +22,16 @@ public class Planet {
     }
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
+    // il ritorno lo faccio fare tramite una variabile boolean che serve come controllo
     public boolean lifeOnPlanet(){
-        // TODO: implement
+    	boolean isAlive = false;
+    	
+        for(int i = 0; i < board.length; i++){
+
+ 			if(board[i] == 1) isAlive = true;
+ 		}
+        return isAlive;
+
     }
     
     // basandosi sul board attuale, lo aggiorna per il successivo turno sequendo le seguenti regole:
