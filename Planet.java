@@ -29,7 +29,7 @@ public class Planet {
 			else if (input.charAt(i)=='1')
 				board[i]=1;
 			else
-				board[i]=0;
+				board[i]=(int)(Math.random() * 2);	// valore casuale tra 0 e 1
 		}
 		
 		this.board = board;
@@ -49,12 +49,11 @@ public class Planet {
 
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
     public boolean lifeOnPlanet(){
-    	boolean response = false;				// TODO: testare refactoring senza variabile di appoggio a codice funzionante
     	for (int i=0; i<board.length; i++) {    		
     		if(board[i]==1)
-    			response = true;
+    			return true;
     	}
-		return response;
+    	return false;
     }
     
     // basandosi sul board attuale, lo aggiorna per il successivo turno sequendo le seguenti regole:
