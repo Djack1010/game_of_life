@@ -82,6 +82,8 @@ public class Planet {
         // copia di temp nella board
         board = Arrays.copyOf(temp, board.length);
 
+        // aggiorno la proprieta' turn
+        turn++;
     }
 
     public int getTurn() {return this.turn;}
