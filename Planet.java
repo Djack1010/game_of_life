@@ -42,6 +42,7 @@ public class Planet {
     	for(int i=0;i<lunghezzaStringa;i++) {
     		System.out.print(board[i]);
     	}
+    	   	
     	System.out.println();
     }
     // restituisce true se c'è almeno un 1 nel board, altrimenti false
@@ -72,7 +73,7 @@ public class Planet {
     public void oneTurn(){
         // TODO: implement
     	
-    Integer[] boardCopia = new Integer[board.length];
+    Integer[] boardCopia = new Integer[board.length];		// creo una copia di board 
     for(int i=0;i<lunghezzaStringa;i++) {
     	boardCopia[i] = board[i];
     }
@@ -84,28 +85,29 @@ public class Planet {
     	}
     	else n1 = boardCopia[i-1];
     	
-    	
     	n2 = boardCopia[i];
-    	
     	
     	if (i==(lunghezzaStringa-1)) {						// gestione caso i=lunghezza stringa
     		n3 = boardCopia[0];
     	}
     	else n3 = boardCopia[i+1];
-    	
-    	
+        	
     	if (n2==0 && n1==1 && n3==1) {
     		board[i] = 1;
     	}
     	else if ((n2==1 && n1==1 && n3==1)||(n2==1 && n1==0 && n3==0)){
     		board[i] = 0;
-    		
-    	}
+      	}
     }
-    
-      	
+       	if (Arrays.equals(board, boardCopia)){									// se non ci sono state modifiche nell'array
+       		java.awt.Toolkit.getDefaultToolkit().beep();						// emette un suono di avvertimento
+       		double numeroCasuale = (Math.random()*(lunghezzaStringa));			// genera una posizione casuale dell'array
+       		double unoZeroCasuale = (Math.random()*(2));						// genera un valore casuale 1 o 0
+       		// System.out.println((int)numeroCasuale);					
+       		board[(int)numeroCasuale] = (int)unoZeroCasuale;					// e lo scrive nella posizione 
+       	}
+          	      
+    	this.turn ++;
     }
-
     public int getTurn() {return this.turn;}
-
 }
