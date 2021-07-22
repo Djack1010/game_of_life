@@ -6,7 +6,7 @@ public class GameOfLife1D {
   public static void main(String atgs[]) {
     
     Scanner input = new Scanner(System.in);
-    System.out.println("Inserisci status iniziale del pianeta");
+    System.out.println("Inserisci status iniziale del pianeta (0/1)");
     String in = input.nextLine();
     Planet board = new Planet(in);
     board.printBoard();

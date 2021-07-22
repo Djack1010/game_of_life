@@ -15,4 +15,3 @@ Le regole di aggiornamento sono le seguenti, per ogni elemento `board[i]`, alla 
 Tutte le altre casistiche non incluse dalle regole, non varia il suo valore.
 
 Il board va considerato CIRCOLARE (es: il vicino sx dell'elemento ad indice 0 è l'elemento ad indice board.length-1)
-    
